@@ -29,5 +29,5 @@ column contents:
   - "-X": measure in X axis of the phone     
   - "-Y": measure in Y axis of the phone     
   - "-Z": measure in Z axis of the phone     
-  - "-mean": Mean value    
-  - "-std": Standard deviation
+  - "-mean()": Mean value    
+  - "-std()": Standard deviation
