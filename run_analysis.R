@@ -36,18 +36,16 @@ run_analysis <- function() {
                 ## combine the directories and the names of files into paths, 
                 ## save the output into the vector "allpaths"  
         }
-        
+     
         features <- read.table(allpaths[2])
         ## Read the "feature.txt" file into the "feature" data frame
         
         subject_test <- fread(allpaths[5], col.names = "Subjects")
         ## Read the "subject_test.txt" file into the "subject_test" data table
         ## Name the only column in "subject_test" as "Subjects"
-        
         X_test <- fread(allpaths[6], col.names = as.character(features[, 2]))
         ## Read the "X_test.txt" file into the "X_test" data table
         ## label the variables in the "X_test" with the descriptive variable names
-        
         y_test <- fread(allpaths[7], col.names = "Activities")
         ## Read the "y_test.txt" file into the "y_test" data table
         ## Name the only column in "y_test" as "Activities"
@@ -87,16 +85,19 @@ run_analysis <- function() {
         ## and excluding those with descriptive names containing "-meanFreq"
         ## from "Data_Merge" and into a new data set called "Data_MeanAndDev"(STEP 2 done)
         
+        
         ## STEP 3: Uses descriptive activity names to name the activities in the data set
         activity_labels <- as.character(read.table(allpaths[1])[ ,2])
         ## Read the activities labels from the file "activity_labels.txt" in UCI HAR Dataset
         Data_Activitylabelled <- mutate(Data_MeanAndDev, Activities = activity_labels[Activities])
         ## Label the activities with the activity names (STEP 3 done)
         
+        
         ## STEP 4: Appropriately labels the data set with descriptive variable names. 
         ## This step has been done during the data merging
         ## Line 45: X_test <- fread(allpaths[6], col.names = as.character(features[, 2]))
         ## Line 54: X_train <- fread(allpaths[9], col.names = as.character(features[, 2]))
+        
         
         ## STEP 5: From the data set in step 4, creates a second, 
         ## independent tidy data set with the average of each variable 
@@ -106,4 +107,6 @@ run_analysis <- function() {
         ## The "TidyData" is a data set with 180 rows and 69 columns 
         write.table(TidyData, file = "./TidyData.txt",  row.names = FALSE)
         ## Create a txt file called "TidyData.txt" and the result in this file (STEP 5 done)
+        
+        message("Data processing completed")
 }
